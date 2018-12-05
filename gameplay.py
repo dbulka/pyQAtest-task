@@ -1,7 +1,7 @@
-from pet import random, Tamagochi
+import random
 from user import User
-from interface import Showable
-
+from IPet import Game_interface
+import pets
 
 class Gameplay:
 
@@ -51,20 +51,10 @@ class Gameplay:
         :return: game result
         """
 
-        # всё до game нужно добавить в main()?
+        # random pet choice
+        pet = game_interface.choose_pet()
 
-
-        # создаём набор имён питомцев
-        pets = game_interface.choose_pet()
-
-        # выбираем имя питомца
-        pet_name = pets[random.randrange(len(pets))]
-        print('pet name - ',pet_name)
-
-        #создаём питомца
-        pet = Tamagochi(pet_name)
-
-        # цикл выполняется пока n до 100 или alive = true
+        # cycle perfom until n < 100 or alive = true
         n = 0
         while (pet.alive and n < 100):
             game_interface.show_tamagochi(pet)
@@ -74,15 +64,17 @@ class Gameplay:
             self.fifth_step(n, pet)
             self.step(pet)
             pet.alive = pet.is_alive()
-    # выводим результат игры
+        #show game result
         game_interface.show_game_result(n, pet.alive)
 
-# создаём класс интерфейса
-game_interface = Showable()
+#initializate interface
+game_interface = Game_interface()
 
-#инициализация Юзера
+#initializate user
 do_user = User()
 
-#закускаем код
+#initializate gameplay
 game = Gameplay()
+
+#start programm
 game.main()

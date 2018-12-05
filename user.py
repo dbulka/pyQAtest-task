@@ -1,8 +1,8 @@
 import logging
-from interface import Showable
+from IUser import User_interface
 
 
-class User(Showable):
+class User(User_interface):
 
     def give_food(self, pet):
         """
